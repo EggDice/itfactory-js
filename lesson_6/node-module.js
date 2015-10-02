@@ -11,7 +11,11 @@ function multiply(a, b) {
 	return a * b;
 }
 
+function doubleNumber(a) {
+	return multiply(a, 2);
+}
+
 module.exports = {
 	add: add,
-    multiply: multiply
+    doubleNumber: doubleNumber
 };
