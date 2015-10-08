@@ -4,8 +4,9 @@ function obstacleFactory(x, y, width, height) {
 	var size = [width, height];
 	var position = [x, y];
 	
-	function draw(context) {
-		context.fillStyle = 'black';
+	function draw(context, color) {
+        color = color || 'black';
+		context.fillStyle = color;
 		context.fillRect(
 			position[HORIZONTAL],
 			position[VERTICAL], 
