@@ -9,7 +9,7 @@ var bestPlayer = document.getElementById('bestPlayer');
 button.addEventListener('click', function() {
   var url = '/play/' + playerInput.value + '/' + numberInput.value
   $.ajax({
-	method: 'GET',
+	method: 'POST',
 	url: url
   });
   updatePlayers();

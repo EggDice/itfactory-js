@@ -1,31 +1,14 @@
 'use strict';
 
-var game = require('./game');
 var app = require('./app');
 
-app.get('/', function(req, res) {
-  res.render('index', {});
-});
+var fs = require('fs');
 
-app.get('/play/:player/:number', function(req, res) {
-	game.submitPlayersGuess(req.params.player, req.params.number);
-	res.send({
-		status: 'ok'
-	});
-});
+var dir = fs.readdirSync('./controllers');
 
-app.get('/player/last', function(req, res) {
-	res.send({
-		status: 'ok',
-		lastPlayer: game.getLastPlayer()
-	});
-});
-
-app.get('/player/best', function(req, res) {
-	res.send({
-		status: 'ok',
-		bestPlayer: game.getBestPlayer()
-	});
+dir.forEach(function(file) {
+	var controller = require('./controllers/' + file);
+	controller(app);
 });
 
 app.listen(8080);

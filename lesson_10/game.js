@@ -1,7 +1,13 @@
 'use strict';
 
+var save = require('./save-game');
+
 var lastPlayer = '';
 var guesses = [];
+
+save.loadEntries(function(err, entries) {
+	guesses = entries;
+});
 
 function getLastPlayer() {
 	return lastPlayer;
@@ -9,10 +15,12 @@ function getLastPlayer() {
 
 function submitPlayersGuess(playerName, number) {
 	lastPlayer = playerName;
-	guesses.push({
+	var entry = {
 		playerName: playerName,
 		number: number
-	});
+	};
+	guesses.push(entry);
+	save.addEntry(entry);
 }
 
 function getBestPlayer() {
@@ -31,8 +39,13 @@ function getBestPlayer() {
 	return '';
 }
 
+function getAllGuesses() {
+	return guesses;
+}
+
 module.exports = {
 	getLastPlayer: getLastPlayer,
 	submitPlayersGuess: submitPlayersGuess,
-	getBestPlayer: getBestPlayer
+	getBestPlayer: getBestPlayer,
+	getAllGuesses: getAllGuesses
 };

@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Number game</title>
+  </head>
+  <body>
+    <h1>Admin</h1>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Number</th>
+		</tr>
+		<% for (var i = 0; i < guesses.length; i++) { %>
+		<tr>
+			<td><%= guesses[i].playerName %></td>
+			<td><%= guesses[i].number %></td>
+		</tr>
+		<% } %>
+	</table>
+  </body>
+</html>
